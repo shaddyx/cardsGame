@@ -1,0 +1,232 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.akhikhl.gretty'
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+group = 'ua.org.shaddy'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+project.ext {
+	projectVersion = "1.0"
+	projectName = "CardsGame"
+	springVersion = "4.1.6.RELEASE"
+	springSecurityVersion = "4.0.1.RELEASE"
+	jacksonVersion = "2.6.1"
+	log4jVersion = "2.3"
+	servletApiVersion = "2.5"
+	//servletApiVersion = "3.0.1"
+	jpaVersion = "1.9.0.RELEASE"
+	hibernateVersion = "5.1.0.Final"
+	mongodbVersion = "1.8.2.RELEASE"
+	mongoDriverVersion = "3.0.1";
+	mysqlConnectorVersion = "5.1.38"
+	jspApiVersion = "2.0"
+	portletApiVersion = 2.0
+	guavaVersion = "18.0"
+	slf4jVersion = "1.7.5"
+	resourceDir = "src/main/resources"
+	infoFile = resourceDir + "/build.info"
+}
+
+gretty {
+	contextPath = "/${projectName}"
+	host = "0.0.0.0"
+	servletContainer = "jetty9"
+	httpPort = 8080
+	managedClassReload = false
+	reloadOnClassChange = false
+	reloadOnLibChange = false
+	recompileOnSourceChange = false
+	fastReload = false
+	interactiveMode = "none"
+}
+
+description = "${projectName}"
+
+configurations{
+	provided
+}
+
+repositories {
+     mavenCentral()
+     maven { url "http://repo.maven.apache.org/maven2" }
+     maven { url "https://github.com/shaddyx/maven_repository/raw/master/" }
+}
+
+dependencies {	
+	//
+	//	spring libraries
+	//
+	compile "org.springframework:spring-beans:${springVersion}"
+	compile "org.springframework:spring-context:${springVersion}"
+	compile "org.springframework:spring-webmvc:${springVersion}"
+	compile "org.springframework:spring-web:${springVersion}"
+	compile "org.springframework:spring-tx:${springVersion}"
+	compile "org.springframework:spring-core:${springVersion}"
+	compile "org.springframework:spring-orm:${springVersion}"
+	compile "org.springframework:spring-aop:${springVersion}"
+	compile "org.springframework:spring-test:${springVersion}"
+	compile "org.springframework:spring-jdbc:${springVersion}"
+	compile "org.springframework:spring-aspects:${springVersion}"
+	compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+	compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
+	compile "org.springframework.security:spring-security-taglibs:${springSecurityVersion}"
+	compile ("org.springframework.data:spring-data-jpa:${jpaVersion}"){
+		exclude group: "javax.persistence"
+	}
+	compile ("org.springframework.data:spring-data-mongodb:${mongodbVersion}"){
+		exclude group: "javax.persistence"
+	}
+	compile "org.mongodb:mongo-java-driver:${mongoDriverVersion}"
+	
+	//
+	//	JSON libraries
+	//
+	compile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+	compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+	compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:${jacksonVersion}"
+	compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+	
+	//
+	//	Database libraries
+	//
+	compile "org.hibernate:hibernate-core:$hibernateVersion"
+	compile "org.hibernate:hibernate-c3p0:$hibernateVersion"
+	compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+	compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
+	compile 'com.h2database:h2:1.4.187'
+	
+	//
+	//	logging
+	//
+	compile "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+	compile "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+	compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.3'
+	compile "org.slf4j:slf4j-api:${slf4jVersion}"
+	compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    
+	//
+	//	misc
+	//
+	//compile 'org.antlr:ST4:4.0.7'
+	compile "ua.org.shaddy:microtools:1.0.2-SNAPSHOT"
+	compile "com.google.guava:guava:${guavaVersion}"
+	compile 'ch.ethz.ganymed:ganymed-ssh2:262'
+	runtime group: 'cglib', name: 'cglib-nodep', version:'2.2.2'
+	compile 'jstl:jstl:1.2'
+    
+    //
+    //	provided
+    //
+	providedCompile "javax.servlet:servlet-api:${servletApiVersion}"
+	providedCompile "javax.servlet.jsp:jsp-api:${jspApiVersion}"
+	providedCompile "javax.portlet:portlet-api:${portletApiVersion}"
+
+	//
+	//	test
+	//
+	testCompile group: 'org.springframework', name: 'spring-test', version:'${springVersion}'
+	testCompile group: "junit", name: "junit", version: "4.+"
+	testCompile 'org.mockito:mockito-all:1.10.19'
+	testCompile 'org.powermock:powermock-api-mockito:1.6.2'
+	testCompile 'org.apache.ftpserver:ftpserver-core:1.0.6'
+	testCompile 'com.h2database:h2:1.4.187'
+
+	testCompile "javax.servlet:servlet-api:${servletApiVersion}"
+	testCompile "javax.servlet.jsp:jsp-api:${jspApiVersion}"
+	testCompile "javax.portlet:portlet-api:${portletApiVersion}"
+}
+
+
+sourceSets {
+	main {
+		java {  srcDir "src/main/java"  }
+		resources {
+			srcDir "src/main/config"
+			srcDir resourceDir
+		}
+		compileClasspath += configurations.provided
+	}
+	test {
+		java { srcDir "src/test/java" }
+		resources {
+			srcDir "src/test/resources"
+			exclude resourceDir + "/**/*"
+		}
+	}
+}
+
+eclipse.project.file.withXml { provider ->
+	ignoreDerivedResources(provider.asNode())
+}
+
+def ignoreDerivedResources(projectDescription, directories = [
+			"build",
+			"target",
+			"test-output"
+		]) {
+	def count = directories.count { file(it).exists() }
+	if (count > 0) {
+		def filter = projectDescription
+				.appendNode("filteredResources")
+				.appendNode("filter")
+		filter.appendNode("id", System.currentTimeMillis().toString().trim())
+		filter.appendNode("type", "26")
+		filter.appendNode("name")
+		def matcher = filter.appendNode("matcher")
+		matcher.appendNode("id", "org.eclipse.ui.ide.orFilterMatcher")
+		def arguments = matcher.appendNode("arguments")
+		directories.each {
+			if (file(it).exists()) {
+				def dirMatcher = arguments.appendNode("matcher")
+				dirMatcher.appendNode("id", "org.eclipse.ui.ide.multiFilter")
+				dirMatcher.appendNode("arguments", "1.0-projectRelativePath-matches-false-false-${it}")
+			}
+		}
+	}
+}
+
+war {
+	archiveName = projectName + ".war"
+	println "Revision:" + gitRevision()
+	println "Branch:" + gitBranch()
+	Properties props = new Properties()
+	props.put("revision", gitRevision())
+	props.put("branch", gitBranch())
+	def writer = new FileWriter(file(infoFile))
+	props.store(writer, 'Auto build properties')
+    	writer.flush()
+}
+
+def gitRevision() {
+	def stdout = new ByteArrayOutputStream()
+    exec {
+	    executable "git"
+	    args "log", "-n", "1", "--format=%h"
+	    standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def gitBranch(){
+	def stdout = new ByteArrayOutputStream()
+	exec {
+	    executable "git"
+	    standardOutput = stdout
+		args "rev-parse", "--abbrev-ref", "HEAD"
+	}
+	return stdout.toString().trim()
+}
