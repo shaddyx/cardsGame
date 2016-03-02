@@ -1,7 +1,7 @@
 package ua.org.shaddy.cardsgame.game.collections.events;
 
-import ua.org.shaddy.cardsgame.game.Card;
-import ua.org.shaddy.cardsgame.game.CardCollection;
+import ua.org.shaddy.cardsgame.game.cards.Card;
+import ua.org.shaddy.cardsgame.game.collections.CardCollection;
 
 public class CardMovedEvent extends CardCollectionEvent {
 	final CardCollection<?> toCollection;

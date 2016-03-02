@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.google.common.eventbus.EventBus;
 
-import ua.org.shaddy.cardsgame.game.Card;
-import ua.org.shaddy.cardsgame.game.CardCollection;
+import ua.org.shaddy.cardsgame.game.cards.Card;
+import ua.org.shaddy.cardsgame.game.collections.CardCollection;
 import ua.org.shaddy.cardsgame.game.collections.events.CardAddedEvent;
 import ua.org.shaddy.cardsgame.game.collections.events.CardCollectionEvent;
 import ua.org.shaddy.cardsgame.game.collections.events.CardMovedEvent;

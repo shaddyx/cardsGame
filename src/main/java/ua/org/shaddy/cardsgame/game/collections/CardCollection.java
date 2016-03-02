@@ -1,4 +1,6 @@
-package ua.org.shaddy.cardsgame.game;
+package ua.org.shaddy.cardsgame.game.collections;
+
+import ua.org.shaddy.cardsgame.game.cards.Card;
 
 /**
  * this is an card collection
