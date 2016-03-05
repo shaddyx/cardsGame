@@ -35,7 +35,7 @@ project.ext {
 	mysqlConnectorVersion = "5.1.38"
 	jspApiVersion = "2.0"
 	portletApiVersion = 2.0
-	guavaVersion = "18.0"
+	guavaVersion = "19.0"
 	slf4jVersion = "1.7.5"
 	resourceDir = "src/main/resources"
 	infoFile = resourceDir + "/build.info"
