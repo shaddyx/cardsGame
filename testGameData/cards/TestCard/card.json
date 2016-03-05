@@ -1,5 +1,4 @@
 {
 	"type":"monster",
-	"lvl":10,
-	"name": "TestCard"
+	"lvl":10
 }

@@ -29,6 +29,7 @@ public class FileCardLoader implements CardLoader {
 	public Card load(String name) {
 		String cardData = FileTools.fileGetString(new File(cardUtils.getCardPath(name), CARD_JSON_NAME).getAbsolutePath());
 		Card card = jsonHelper.fromJson(cardData, Card.class);
+		card.setName(name);
 		scriptLoader.loadScripts(card);
 		return card;
 	}
