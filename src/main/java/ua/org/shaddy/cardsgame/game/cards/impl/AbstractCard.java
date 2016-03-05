@@ -11,7 +11,7 @@ public abstract class AbstractCard implements Card {
 	private Description description;
 	private Image image; 
 	private CardScripts cardScripts;
-	private CardCollection<?> collection;
+	private CardCollection<? extends Card> collection;
 	@Override
 	public Description getDescription() {
 		return description;
@@ -29,11 +29,11 @@ public abstract class AbstractCard implements Card {
 		this.image = image;
 	}
 	@Override
-	public CardCollection<?> getCollection() {
+	public CardCollection<? extends Card> getCollection() {
 		return collection;
 	}
 	@Override
-	public void setCollection(CardCollection<?> collection) {
+	public void setCollection(CardCollection<? extends Card> collection) {
 		this.collection = collection;
 	}
 	
