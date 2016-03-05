@@ -17,11 +17,11 @@ public class FileScriptLoaderImpl implements ScriptLoader {
 	CardUtils cardUtils;
 	
 	@Override
-	public CardScripts loadScripts(Card card){
+	public void loadScripts(Card card){
 		String folderName = cardUtils.getCardPath(card.getName());
 		CardScripts result = new CardScripts();
 		result.setOnGetBonus(FileTools.fileGetString(new File(folderName, SCRIPTS_FOLDER + "/getBonus.js").getAbsolutePath()));
 		result.setOnUse(FileTools.fileGetString(new File(folderName, SCRIPTS_FOLDER + "/use.js").getAbsolutePath()));
-		return result;
+		card.setCardScripts(result);
 	}
 }

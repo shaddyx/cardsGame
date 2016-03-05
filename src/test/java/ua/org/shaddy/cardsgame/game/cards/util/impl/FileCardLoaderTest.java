@@ -7,23 +7,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ua.org.shaddy.cardsgame.game.cards.Card;
-import ua.org.shaddy.cardsgame.game.cards.impl.AbstractCard;
 import ua.org.shaddy.cardsgame.testutil.BasicTestSpringConfig;
 import ua.org.shaddy.cardsgame.testutil.TestConstants;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = BasicTestSpringConfig.class)
-public class FileScriptLoaderImplTest {
-
+public class FileCardLoaderTest {
+	
 	@Autowired
-	FileScriptLoaderImpl loader;
+	FileCardLoader fileCardLoader;
 	
 	@Test
-	public void testLoadScripts() {
-		Card card = new AbstractCard(){
-			
-		};
-		card.setName(TestConstants.TEST_CARD_NAME);
-		loader.loadScripts(card);
+	public void test() {
+		Card card = fileCardLoader.load(TestConstants.TEST_CARD_NAME);
 		System.out.println(card);
 	}
 

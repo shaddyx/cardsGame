@@ -5,6 +5,6 @@ import ua.org.shaddy.cardsgame.game.cards.entities.CardScripts;
 
 public interface ScriptLoader {
 
-	public CardScripts loadScripts(Card card);
+	public void loadScripts(Card card);
 
 }

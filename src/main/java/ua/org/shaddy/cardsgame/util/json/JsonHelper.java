@@ -1,7 +1,6 @@
 package ua.org.shaddy.cardsgame.util.json;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -17,10 +16,7 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 public class JsonHelper {
 	@JsonFilter("filter1")  
 	private class PropertyFilterMixIn {}  
-	
-    @SuppressWarnings("serial")
-    private static List<String> OK_RESP = new ArrayList<String>(){{ add("OK"); }};
-    
+	    
     ObjectMapper mapper = new ObjectMapper();
     
 	private String writeValueAsJson(Object map, String[] fieldsToIgnore){
@@ -43,19 +39,12 @@ public class JsonHelper {
 		}      
 	}
 
-	public String toJsonAnswer(Object object) {
-		return toJsonAnswer(object, null);
-	}
-	
-    private String toJsonAnswer(Object object, String[] fieldsToIgnore) {
-        return writeValueAsJson(new JsonResponse(object), fieldsToIgnore);
+    
+    public String toJson(Object object) {
+    	return toJson(object, null);
     }
     
-    public String toRawJson(Object object) {
-    	return toRawJson(object, null);
-    }
-    
-    private String toRawJson(Object object, String[] fieldsToIgnore) {
+    public String toJson(Object object, String[] fieldsToIgnore) {
 		return writeValueAsJson(object, fieldsToIgnore);
 	}
     
@@ -80,19 +69,7 @@ public class JsonHelper {
 		}
 		return resultList;
     }
-    
-    public String okJson(){
-    	return toJsonAnswer(ok());
-    }
-    
-    public List<String> ok() {
-		return OK_RESP;
-	}
 
-	public String errorJson(String error) {
-		return writeValueAsJson(new JsonResponse(null, error), null);
-	}
-	
     public void update(String json, Object obj){
     	try {
 			mapper.readerForUpdating(obj).readValue(json);

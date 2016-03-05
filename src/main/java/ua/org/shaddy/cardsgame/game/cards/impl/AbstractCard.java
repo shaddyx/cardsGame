@@ -55,7 +55,7 @@ public abstract class AbstractCard implements Card {
 	
 	@Override
 	public String toString() {
-		return "AbstractCard [name=" + name + ", description=" + description + ", image=" + image + ", cardScripts="
+		return this.getClass().getSimpleName() + "[name=" + name + ", description=" + description + ", image=" + image + ", cardScripts="
 				+ cardScripts + ", collection=" + collection + "]";
 	}
 	
