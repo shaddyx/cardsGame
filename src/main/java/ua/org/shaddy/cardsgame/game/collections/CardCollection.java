@@ -8,7 +8,9 @@ import ua.org.shaddy.cardsgame.game.cards.Card;
  *
  * @param <T>
  */
-public interface CardCollection<T extends Card>{
+public interface CardCollection<T extends Card> extends Iterable<T>{
+	public int size();
+	public T get(int index);
 	public void add(T card);
 	public void remove(T card);
 	public boolean contains(T card);
