@@ -12,7 +12,7 @@ import ua.org.shaddy.cardsgame.game.collections.events.CardAddedEvent;
 import ua.org.shaddy.cardsgame.game.collections.events.CardCollectionEvent;
 import ua.org.shaddy.cardsgame.game.collections.events.CardMovedEvent;
 
-public abstract class AbstractCardCollection<T extends Card> implements CardCollection<T>{
+public abstract class AbstractCardsCollection<T extends Card> implements CardCollection<T>{
 	private static final long serialVersionUID = -3710121034192698540L;
 	EventBus eventBus = new EventBus();
 	List<T> cardList = new LinkedList<T>();
@@ -29,7 +29,6 @@ public abstract class AbstractCardCollection<T extends Card> implements CardColl
 		}
 	}
 
-	
 	public void addListener(Object listener){
 		eventBus.register(listener);
 	}

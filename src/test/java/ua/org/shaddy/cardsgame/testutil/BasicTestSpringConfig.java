@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 import ua.org.shaddy.cardsgame.config.Config;
-import ua.org.shaddy.cardsgame.game.Game;
+import ua.org.shaddy.cardsgame.game.GameLogic;
 import ua.org.shaddy.cardsgame.util.MappingExceptionResolver;
 
-@ComponentScan(basePackageClasses={Game.class, MappingExceptionResolver.class})
+@ComponentScan(basePackageClasses={GameLogic.class, MappingExceptionResolver.class})
 public class BasicTestSpringConfig {
 	@Bean
 	public Config config(){
