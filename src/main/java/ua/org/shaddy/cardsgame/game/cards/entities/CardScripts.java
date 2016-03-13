@@ -1,19 +1,21 @@
 package ua.org.shaddy.cardsgame.game.cards.entities;
 
+import ua.org.shaddy.cardsgame.game.entities.JScript;
+
 public class CardScripts {
-	private String onUse;
-	private String onGetBonus;
+	private JScript onUse;
+	private JScript onGetBonus;
 		
-	public String getOnUse() {
+	public JScript getOnUse() {
 		return onUse;
 	}
-	public void setOnUse(String onUse) {
+	public void setOnUse(JScript onUse) {
 		this.onUse = onUse;
 	}
-	public String getOnGetBonus() {
+	public JScript getOnGetBonus() {
 		return onGetBonus;
 	}
-	public void setOnGetBonus(String onGetBonus) {
+	public void setOnGetBonus(JScript onGetBonus) {
 		this.onGetBonus = onGetBonus;
 	}
 	@Override

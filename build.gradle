@@ -39,6 +39,7 @@ project.ext {
 	slf4jVersion = "1.7.5"
 	resourceDir = "src/main/resources"
 	infoFile = resourceDir + "/build.info"
+	rhinoVersion = "1.7.7.1"
 }
 
 gretty {
@@ -84,6 +85,8 @@ dependencies {
 	compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
 	compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
 	compile "org.springframework.security:spring-security-taglibs:${springSecurityVersion}"
+	compile "org.mozilla:rhino:${rhinoVersion}"
+	
 	compile ("org.springframework.data:spring-data-jpa:${jpaVersion}"){
 		exclude group: "javax.persistence"
 	}

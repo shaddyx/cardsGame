@@ -1,7 +1,7 @@
-package ua.org.shaddy.cardsgame.game;
+package ua.org.shaddy.cardsgame.game.logic;
 
 import ua.org.shaddy.cardsgame.game.entities.Game;
 
 public interface GameLogic {
-	public void process(Game game);
+	public void processTurn(Game game);
 }
