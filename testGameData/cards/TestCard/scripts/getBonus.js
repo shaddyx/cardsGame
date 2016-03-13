@@ -1,1 +1,1 @@
-alert("getBonusCalled");
+result = 3
