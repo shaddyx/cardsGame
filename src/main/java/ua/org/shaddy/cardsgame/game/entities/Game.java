@@ -3,16 +3,25 @@ package ua.org.shaddy.cardsgame.game.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.org.shaddy.cardsgame.game.collections.impl.DeskCardCollection;
 import ua.org.shaddy.cardsgame.game.collections.impl.DoorsCardCollection;
 import ua.org.shaddy.cardsgame.game.collections.impl.TreasureCardsCollection;
 
 public class Game {
+	private final int gameId;
 	private List<Player> playerList = new ArrayList<>();
 	private Player playerTurn;
+	private DeskCardCollection deskCards = new DeskCardCollection();
 	private DoorsCardCollection dorCards = new DoorsCardCollection();
 	private TreasureCardsCollection treasureCards = new TreasureCardsCollection();
 	private DoorsCardCollection retainedDorCards = new DoorsCardCollection();
 	private TreasureCardsCollection retainedTreasureCards = new TreasureCardsCollection();
+	
+	public Game(int gameId) {
+		super();
+		this.gameId = gameId;
+	}
+	
 	public List<Player> getPlayerList() {
 		return playerList;
 	}
@@ -48,5 +57,32 @@ public class Game {
 	}
 	public void setRetainedTreasureCards(TreasureCardsCollection retainedTreasureCards) {
 		this.retainedTreasureCards = retainedTreasureCards;
+	}
+	public DeskCardCollection getDeskCards() {
+		return deskCards;
+	}
+	public void setDeskCards(DeskCardCollection deskCards) {
+		this.deskCards = deskCards;
+	}
+	
+	public int getGameId() {
+		return gameId;
+	}
+	@Override
+	public int hashCode() {
+		return gameId;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Game other = (Game) obj;
+		if (gameId != other.gameId)
+			return false;
+		return true;
 	}
 }
