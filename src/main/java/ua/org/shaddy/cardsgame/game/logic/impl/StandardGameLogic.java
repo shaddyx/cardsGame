@@ -19,6 +19,19 @@ public class StandardGameLogic implements GameLogic {
 	public void processTurn(Game game) {
 		int playerBonus = getPlayerBonus(game);
 		int deskBonus = getDeskBonus(game);
+		if (playerBonus >= deskBonus){
+			upPlayer(game);
+		} else {
+			killPlayer(game);
+		}
+	}
+	
+	private void upPlayer(Game game) {
+		game.getPlayerTurn().setLvl(game.getPlayerTurn().getLvl() + 1);
+	}
+
+	private void killPlayer(Game game) {
+		game.getPlayerTurn().setLvl(game.getPlayerTurn().getLvl() - 1);
 	}
 
 	private int getPlayerBonus(Game game) {
@@ -26,11 +39,6 @@ public class StandardGameLogic implements GameLogic {
 	}
 	
 	private int getDeskBonus(Game game){
-		//
-		//	TODO: fix this
-		//
-		return 0;
+		return gameUtils.getCollectionBonus(game.getDeskCards());
 	}
-	
-	
 }
