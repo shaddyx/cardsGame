@@ -9,8 +9,8 @@ import ua.org.shaddy.cardsgame.game.collections.impl.TreasureCardsCollection;
 
 public class Game {
 	private final long gameId;
-	private List<Player> playerList = new ArrayList<>();
-	private Player playerTurn;
+	private List<GamePlayer> playerList = new ArrayList<>();
+	private GamePlayer playerTurn;
 	private DeskCardCollection deskCards = new DeskCardCollection();
 	private DoorsCardCollection dorCards = new DoorsCardCollection();
 	private TreasureCardsCollection treasureCards = new TreasureCardsCollection();
@@ -22,47 +22,30 @@ public class Game {
 		this.gameId = gameId;
 	}
 	
-	public List<Player> getPlayerList() {
+	public List<GamePlayer> getGamePlayerList() {
 		return playerList;
 	}
-	public void setPlayerList(List<Player> playerList) {
-		this.playerList = playerList;
-	}
-	public Player getPlayerTurn() {
+
+	public GamePlayer getPlayerTurn() {
 		return playerTurn;
 	}
-	public void setPlayerTurn(Player playerTurn) {
+	public void setPlayerTurn(GamePlayer playerTurn) {
 		this.playerTurn = playerTurn;
 	}
 	public DoorsCardCollection getDorCards() {
 		return dorCards;
 	}
-	public void setDorCards(DoorsCardCollection dorCards) {
-		this.dorCards = dorCards;
-	}
 	public TreasureCardsCollection getTreasureCards() {
 		return treasureCards;
-	}
-	public void setTreasureCards(TreasureCardsCollection treasureCards) {
-		this.treasureCards = treasureCards;
 	}
 	public DoorsCardCollection getRetainedDorCards() {
 		return retainedDorCards;
 	}
-	public void setRetainedDorCards(DoorsCardCollection retainedDorCards) {
-		this.retainedDorCards = retainedDorCards;
-	}
 	public TreasureCardsCollection getRetainedTreasureCards() {
 		return retainedTreasureCards;
 	}
-	public void setRetainedTreasureCards(TreasureCardsCollection retainedTreasureCards) {
-		this.retainedTreasureCards = retainedTreasureCards;
-	}
 	public DeskCardCollection getDeskCards() {
 		return deskCards;
-	}
-	public void setDeskCards(DeskCardCollection deskCards) {
-		this.deskCards = deskCards;
 	}
 	
 	public long getGameId() {

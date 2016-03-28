@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.org.shaddy.cardsgame.game.entities.Game;
-import ua.org.shaddy.cardsgame.game.entities.Player;
+import ua.org.shaddy.cardsgame.game.entities.GamePlayer;
 import ua.org.shaddy.cardsgame.game.logic.GameService;
 import ua.org.shaddy.cardsgame.game.logic.GameStorage;
 
@@ -21,8 +21,8 @@ public class GameServiceImpl implements GameService{
 		return game;
 	}
 	@Override
-	public void addPlayerToGame(Game game, Player player) {
-		game.getPlayerList().add(player);
+	public void addPlayerToGame(Game game, GamePlayer player) {
+		game.getGamePlayerList().add(player);
 		if (game.getPlayerTurn() == null){
 			game.setPlayerTurn(player);
 		}
