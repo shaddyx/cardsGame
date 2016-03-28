@@ -9,14 +9,14 @@ import ua.org.shaddy.cardsgame.game.entities.Game;
 import ua.org.shaddy.cardsgame.game.logic.GameStorage;
 @Service
 public class GameStorageImpl implements GameStorage {
-	final HashMap<Integer, Game> games = new HashMap<>();
+	final HashMap<Long, Game> games = new HashMap<>();
 	@Override
 	public Iterator<Game> iterator() {
 		return games.values().iterator();
 	}
 
 	@Override
-	public Game getById(int gameId) {
+	public Game getById(long gameId) {
 		return games.get(gameId);
 	}
 	@Override

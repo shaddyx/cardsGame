@@ -8,7 +8,7 @@ import ua.org.shaddy.cardsgame.game.collections.impl.DoorsCardCollection;
 import ua.org.shaddy.cardsgame.game.collections.impl.TreasureCardsCollection;
 
 public class Game {
-	private final int gameId;
+	private final long gameId;
 	private List<Player> playerList = new ArrayList<>();
 	private Player playerTurn;
 	private DeskCardCollection deskCards = new DeskCardCollection();
@@ -17,7 +17,7 @@ public class Game {
 	private DoorsCardCollection retainedDorCards = new DoorsCardCollection();
 	private TreasureCardsCollection retainedTreasureCards = new TreasureCardsCollection();
 	
-	public Game(int gameId) {
+	public Game(long gameId) {
 		super();
 		this.gameId = gameId;
 	}
@@ -65,12 +65,12 @@ public class Game {
 		this.deskCards = deskCards;
 	}
 	
-	public int getGameId() {
+	public long getGameId() {
 		return gameId;
 	}
 	@Override
 	public int hashCode() {
-		return gameId;
+		return (int) (gameId / 2);
 	}
 	@Override
 	public boolean equals(Object obj) {

@@ -13,7 +13,7 @@ public class GameServiceImpl implements GameService{
 	
 	@Autowired 
 	GameStorage gameStorage;
-	volatile int lastGameUid = 0;
+	volatile long lastGameUid = 0;
 	@Override
 	public Game create() {
 		Game game = new Game(lastGameUid ++);
@@ -26,6 +26,11 @@ public class GameServiceImpl implements GameService{
 		if (game.getPlayerTurn() == null){
 			game.setPlayerTurn(player);
 		}
+	}
+	
+	@Override
+	public Game get(long id) {
+			return gameStorage.getById(id);
 	}
 	
 }

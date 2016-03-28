@@ -8,7 +8,7 @@ public interface GameStorage extends Iterable<Game>{
 	 * @param gameId
 	 * @return
 	 */
-	public Game getById(int gameId);
+	public Game getById(long gameId);
 	/**
 	 * adds game to collection
 	 * @param game

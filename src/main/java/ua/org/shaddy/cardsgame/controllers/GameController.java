@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ua.org.shaddy.cardsgame.game.entities.Game;
@@ -24,11 +25,17 @@ public class GameController {
 	@Autowired
 	GameService gameService;
 	
-	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, produces = MediaType.APPLICATION_JSON_VALUE, value = "/getChannelTxPairs")
+	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, produces = MediaType.APPLICATION_JSON_VALUE, value = "/create")
     @ResponseBody
-    public String createGame(){
+    public String create(){
 		Game game = gameService.create();
 		return jsonHelper.toJsonAnswer(game);
+	}
+	
+	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, produces = MediaType.APPLICATION_JSON_VALUE, value = "/get")
+    @ResponseBody
+    public String get(@RequestParam long id){
+		return jsonHelper.toJsonAnswer(gameService.get(id));
 	}
 		
 }
